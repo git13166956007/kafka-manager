@@ -1,3 +1,17 @@
-# Project exclude paths
-/slk-kafka-client/target/
-/slk-kafka-server/target/
+# Default ignored files
+/workspace.xml
+
+# Editor-based HTTP Client requests
+/httpRequests/
+
+target
+.idea
+*.iml
+logs
+.eclipse
+*.log
+*.class
+*.log.lck
+*.epoch
+/event_error/
+.flattened-pom.xml
