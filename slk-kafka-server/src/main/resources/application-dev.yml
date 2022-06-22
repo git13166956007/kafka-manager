@@ -1,0 +1,46 @@
+server:
+  port: 8001
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 1024
+      pool-name: hikariCp
+      max-lifetime: 180000
+      connection-timeout: 30000
+      connection-init-sql: select 1
+      validation-timeout: 250
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/saas?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  kafka:
+    bootstrap-servers: 192.168.1.6:9092
+    producer:
+      retries: 3
+      batch-size: 16384
+      buffer-memory: 33554432
+      acks: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: compensationKafka
+      enable-auto-commit: false
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: manual_immediate
+
+

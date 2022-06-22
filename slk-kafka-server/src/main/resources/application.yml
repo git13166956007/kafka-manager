@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: kafka-manager
+  profiles:
+    active: dev
