@@ -1,7 +1,7 @@
 package com.slk.kafka.manager.service.impl;
 
 import com.alibaba.fastjson2.JSON;
-import com.slk.kafka.client.handler.RetryDeadKafkaListenerHandler;
+import com.slk.kafka.client.spring.RetryDeadKafkaListenerHandler;
 import com.slk.kafka.manager.convert.DeadMessageConvert;
 import com.slk.kafka.manager.dead.DeadMessageCmd;
 import com.slk.kafka.manager.entity.DeadMessageEntity;

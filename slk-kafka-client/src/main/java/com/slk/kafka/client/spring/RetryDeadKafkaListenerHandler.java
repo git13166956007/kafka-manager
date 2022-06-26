@@ -1,4 +1,4 @@
-package com.slk.kafka.client.handler;
+package com.slk.kafka.client.spring;
 
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -133,8 +133,8 @@ public class RetryDeadKafkaListenerHandler implements ConsumerAwareErrorHandler,
         String groupId = consumer.groupMetadata().groupId();
 
         //填充header信息
-        addOriHeaderInfo(cusData,topic,partition,groupId);
-        addAppNameHeader(headers);
+        this.addOriHeaderInfo(cusData,topic,partition,groupId);
+        this.addAppNameHeader(headers);
         if (retryTime.get()>=MAX_RETRY){
             //进入死信队列
             dealDeadMessage(consumerRecord,headers,cusData);

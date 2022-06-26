@@ -1,7 +1,7 @@
 package com.slk.kafka.manager.retry;
 
 import com.alibaba.fastjson2.JSON;
-import com.slk.kafka.client.handler.RetryDeadKafkaListenerHandler;
+import com.slk.kafka.client.spring.RetryDeadKafkaListenerHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;

@@ -1,7 +1,7 @@
 package com.slk.kafka.manager.dead;
 
 import com.alibaba.fastjson2.JSON;
-import com.slk.kafka.client.handler.RetryDeadKafkaListenerHandler;
+import com.slk.kafka.client.spring.RetryDeadKafkaListenerHandler;
 import com.slk.kafka.manager.service.DeadMessageAppServiceI;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -31,7 +31,7 @@ public class DeadMessageListener {
 
     private final StringDeserializer stringDeserializer = new StringDeserializer();
 
-    @KafkaListener(topics = RetryDeadKafkaListenerHandler.DEAD_TOPIC)
+    @KafkaListener(topics = RetryDeadKafkaListenerHandler.DEAD_TOPIC,groupId = "compensationKafka")
     public void dealDeadMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment ack) {
         log.info("死信队列收取到信息：{}" , JSON.toJSONString(consumerRecord.value()));
         Header retryDeadHeader = consumerRecord.headers().lastHeader(RetryDeadKafkaListenerHandler.CUSTOM_HEAD_NAME);
